@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气案例-深度监督 </title>
+  <script src="./js/vue.js">
+
+  </script>
+</head>
+<body>
+  <div id="root" >
+    <h2>今天天气真{{info}}</h2>
+    <button @click="changeWeather">点击切换天气</button>
+    <hr><h2>a的值是{{number.a}}</h2>
+    <button @click="number.a++">点击让a自加</button>
+    <h2>b的值是{{number.b}}</h2>
+    <button @click="number.b++">点击让b自加</button>
+
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el:"#root",
+      data:{
+        ishot:true,
+
+        number:{
+          a:1,b:2
+        }
+      },
+      methods:{
+        changeWeather(){
+            this.ishot = !this.ishot
+        }
+      },
+      computed:{
+        info(){
+          return this.ishot?"炎热":"凉爽"
+        }
+      },
+      watch:{
+        ishot:{
+          immediate:true,
+          handler(){
+            console.log("ishot被修改了")
+          }
+        },
+        number:{
+          deep:true,
+          handler(){
+            console.log("number被修改了")
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

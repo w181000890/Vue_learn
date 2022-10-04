@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表的过滤</title>
+  <script src="../js//vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 遍历数组 -->
+    <input type="text" v-model="keyvalue" placeholder="请输入搜索人名">
+    <h2>人员基本信息</h2>
+    <ul>
+      <li v-for="(person,index) in filtPerson" :key="index">
+        {{person.name}}--{{person.age}}--{{person.gender}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        keyvalue:"",
+        persons: [
+          { id: '001', name: "马冬梅", age: 18 ,gender:'女'},
+          { id: '002', name: "周冬雨", age: 19 ,gender:'女'},
+          { id: '003', name: "周杰伦", age: 20 ,gender:'男'},
+          { id: '003', name: "温兆伦", age: 21 ,gender:'男'}
+        ],
+        filtPerson:[]
+      },
+      watch:{
+        keyvalue:{
+          immediate:true,
+          handler(val){
+            this.filtPerson = this.persons.filter((person)=>{
+              return person.name.indexOf(this.keyvalue)!==-1
+            })
+          }
+        }  
+      }
+      // computed:{
+      //   filtPerson(){
+      //     return this.persons.filter((person)=>{
+      //         return person.name.indexOf(this.keyvalue)!==-1
+      //     })
+      //   }
+      // }
+
+        
+    });
+  </script>
+</body>
+
+</html>

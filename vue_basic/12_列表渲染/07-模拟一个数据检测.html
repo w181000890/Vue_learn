@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟一个数据检测</title>
+</head>
+<body>
+  <script>
+    const data = {
+        name: "尚硅谷",
+        adress: "北京"
+      }
+      let object = new ObjectServer(data);
+
+      function  ObjectServer(data){
+        const keys = Object.keys(data)
+        // console.log(keys)
+        keys.forEach((key)=>{
+          Object.defineProperty(this,key,{
+            get(){
+              return data[key]
+            },
+            set(val){
+              data[k] = val
+            }
+          })
+
+        })
+      }
+  </script>
+  
+</body>
+</html>

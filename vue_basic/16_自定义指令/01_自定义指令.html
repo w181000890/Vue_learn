@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>n的原始值为{{n}}</h1>
+    <h1>n扩大10倍:<span v-big="n"></span></h1>
+    <button @click="n++">点我n+1</button>
+    <hr>
+    <input type="text" v-fbind:value="n" >
+
+
+  </div>
+  <script>
+     Vue.config.productionTip = false
+    //  Vue.config.devtools = true
+    
+    const vm = new Vue({
+      el:"#root",
+      data:{
+        n:2
+      },
+      directives:{
+        big(element,bind){
+          element.innerHTML=bind.value*10
+        },
+        fbind:{
+            bind(element, binding){
+              element.value = binding.value
+            },
+            inserted(element, binding){
+                element.focus()
+            },
+            update(element, binding){
+              element.value = binding.value
+            }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

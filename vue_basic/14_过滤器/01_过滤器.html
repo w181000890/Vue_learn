@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/dayjs.min.js"></script>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 计算属性 -->
+    <h1>{{dateFormat}}</h1>
+    <h1>{{dateFormat1()}}</h1>
+    <h1>{{time | dateFormat2()}}</h1>
+    <h1>{{time | dateFormat2('YYYY-MM-DD') | mySlice() }}</h1>
+  </div>
+  <script>
+    Vue.filter('mySlice',function(value){
+        return value.slice(0, 4)
+    })
+    new Vue({
+      el: "#root",
+      data: {
+        time: 1664724032797,
+      },
+      computed: {
+        dateFormat() {
+          return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+        }
+      },
+      methods: {
+        dateFormat1() {
+          return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+        }
+      },
+      filters: {
+        dateFormat2(value, str = 'YYYY-MM-DD HH:mm:ss') {
+          return dayjs(value).format(str)
+        },
+        // mySlice(value){
+        //   return value.slice(0,4)
+        // }
+      }
+    })
+  </script>
+</body>
+
+</html>

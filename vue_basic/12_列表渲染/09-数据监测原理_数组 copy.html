@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+
+  <div id="root">
+    <h1>学校信息</h1>
+    <h1>学校名称：{{school.name}}</h1>
+    <h1>地址：{{school.adress}}</h1>
+    <h1 v-if="school.leader ">学校校长：{{school.leader}}</h1>
+    <hr>
+    <h1>学生信息</h1>
+    <button @click="addSex">添加学生性别</button>
+    
+    <h1>姓名：{{student.name}}</h1>
+    <h1>年纪：真实年纪{{student.age.rage}},对外年纪:{{student.age.sage}}</h1>
+    <h1 v-if="student.sex">性别：{{student.sex}}</h1>
+  <h1>爱好</h1>
+  <ul>
+    <li v-for="(h,index) in student.hobby" :key="index">
+      {{h}}
+    </li>
+  </ul>
+    <h1>朋友们</h1>
+    <ul>
+      <li v-for="(p,index) in student.friends" :key="index">
+        {{p.name}}--{{p.age}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        school: {
+          name: "尚硅谷",
+          adress: "北京",
+        },
+
+        student: {
+          name: "tom",
+          age: {
+            rage: 18,
+            sage: 12
+          },
+          hobby:['吸烟','喝酒','烫头'],
+          friends:
+            [
+              { name: 'jerry', age: 35 },
+              { name: 'tony', age: 36 }
+            ]
+
+        }
+
+      },
+      methods: {
+        addSex() {
+          Vue.set(this.student, 'sex', '男')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气案例-监视属性</title>
+  <script src="./js/vue.js">
+
+  </script>
+</head>
+<body>
+  <div id="root">
+    <h2 >今天天气很炎热{{info}}</h2>
+    <button @click="changeWeather">点击切换</button>
+  </div>
+  <script>
+    Vue.config.peoductionTip = false;
+    const vm = new Vue({
+      el:"#root",
+      data:{
+        ishot:true
+      },
+      methods:{
+        changeWeather(){
+          this.ishot = !this.ishot;
+        }
+      },
+      computed:{
+        info(){
+          return this.ishot?"清爽":"炎热"
+        }
+      },
+      // watch:{
+      //   ishot:{
+      //      immediate: true,
+      //      handler(newValue,oldValue){
+      //       console.log("ishot修改了", newValue, oldValue)
+      //      }
+      //   }
+      // }
+      
+    });
+    vm.$watch('ishot',{
+      immediate:true,
+      handler(newValue,oldValue){
+        console.log("ishot被修改了")
+      }
+    })
+  </script>
+</body>
+</html>

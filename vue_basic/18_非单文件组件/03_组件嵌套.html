@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <app></app>
+
+
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    //创建学生组件
+    const student = Vue.extend({
+
+      template: `
+        <div>
+           <h2>学生名字：{{name}}</h2>
+            <h2>学生年纪：{{age}}</h2>
+          </div>
+      `,
+      data() {
+        return {
+          name: "小红",
+          age: 18
+        }
+      }
+    })
+    //创建hello组件
+    const hello = Vue.extend({
+      template: `
+        <div>
+          <h2>欢迎来到尚硅谷学习</h2>
+          </div>
+        `,
+
+    })
+    //创建学校组建 
+    const school = Vue.extend({
+
+      template: `
+        <div>
+           <h2>学校名称：{{name}}</h2>
+            <h2>学校地址：{{adress}}</h2>
+            <student></student>
+          </div>
+      `,
+      data() {
+        return {
+          name: "尚硅谷",
+          adress: "北京"
+        }
+      },
+      components: {
+        student: student
+      }
+    })
+    //创建app组件
+    const app = Vue.extend({
+      template: `
+      <div>
+        <hello></hello>
+        <school></school>
+        
+        </div>
+      `,
+      components: {
+        school,
+        hello
+      }
+    })
+
+
+    new Vue({
+      el: "#root",
+
+      components: {
+        app: app,
+        // student: student
+      }
+
+    })
+  </script>
+</body>
+
+</html>
