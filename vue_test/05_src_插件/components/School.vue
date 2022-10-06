@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>学校名称:{{name}}</h2>
+    <h2>学校名称:{{name | mySlice}}</h2>
     <h2>学生地址：{{adress}}</h2>
   </div>
 </template>
