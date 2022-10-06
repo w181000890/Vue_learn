@@ -1,5 +1,5 @@
 <template>
-  <div class="demo">
+  <div >
     <h2>学生名称：{{name}}</h2>
     <h2>学生年龄：{{age}}</h2>
   </div>
@@ -10,8 +10,8 @@ export default{
   name:"Student",
   data() {
     return {
-      schoolName: "尚硅谷",
-      adress: "北京",
+      name: "尚硅谷",
+      age: 18,
     }
   },  
 }
