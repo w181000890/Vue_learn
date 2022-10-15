@@ -4,7 +4,7 @@
       <div class="todo-wrap">
         <MyHeader :addList='addList'/>
         <MyList :todoList='todoList' :checkHandle='checkHandle' :deleteHander='deleteHander'/>
-        <MyFooter />
+        <MyFooter :todoList='todoList' :btnAll='btnAll' :clearnAll='clearnAll'/>
       </div>
     </div>
   </div>
@@ -50,6 +50,17 @@ export default {
     deleteHander(id){
       console.log(id)
       this.todoList = this.todoList.filter(val=>val.id !==id)
+    },
+    //全选
+    btnAll(ischeck){
+    //   console.log(ischeck)
+      this.todoList.filter(val=>val.todo=ischeck)
+    },
+    //清除已完成任務
+    clearnAll(){
+      this.todoList = this.todoList.filter((todo)=>{
+        return !todo.todo
+      })
     }
   }
 };
