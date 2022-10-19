@@ -1,56 +1,52 @@
 <template>
-  <div class="todo-footer" v-show="allNum" @change='selectAll'>
+  <div class="todo-footer" v-show="totalnum">
     <label>
-      <input type="checkbox" :checked="isall" />
+      <input type="checkbox" :checked="isall" @click="choice"/>
     </label>
     <span>
-      <span>已完成{{ doneNum }}</span> / 全部{{ allNum }}
+      <span>已完成{{ selectednum }}</span> / 全部{{ totalnum }}
     </span>
-    <button class="btn btn-danger" @click='clearnAll'>清除已完成任务</button>
+    <button class="btn btn-danger" @click="clearth">清除已完成任务</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyFooter",
-  props: ["todoList", "btnAll",'clearnAll'],
+  name: "Myfooter",
+  props: ["todoList", "clearSelected","selectAll"],
   computed: {
-    doneNum() {
-      //常规forEach方法
-      // let i = 0
-      // this.todoList.forEach(element => {
-      //   if(element.todo){
-      //     i++
-      //   }
-      //   console.log(i)
-
-      // });
-      // return i
-      //方法2 reduce方法
-      return this.todoList.reduce((a, b) => {
-        return a + (b.todo ? 1 : 0);
-      }, 0);
+    selectednum() {
+      let num = 0;
+      this.todoList.forEach((element) => {
+        if (element.todo) {
+          num++;
+        }
+      });
+      return num;
     },
-    allNum() {
+    totalnum() {
       return this.todoList.length;
     },
     isall() {
-      return this.doneNum===this.allNum && this.doneNum>0
+      return this.totalnum === this.selectednum && this.totalnum > 0;
     },
   },
   methods: {
-    selectAll(e) {
-      // console.log(e.target)
-      this.btnAll(e.target.checked);
+    choice(e){
+      console.log(e.target.checked)
+      this.selectAll(e.target.checked)
     },
-    clearBtn(){
-      this.clearnAll()
-    }
+    isallselect() {
+      return this.totalnum;
+    },
+    clearth() {
+      this.clearSelected();
+    },
   },
 };
 </script>
 
-<style scoped>
+<style >
 /*footer*/
 .todo-footer {
   height: 40px;

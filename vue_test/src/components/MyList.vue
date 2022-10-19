@@ -1,36 +1,36 @@
 <template>
   <ul class="todo-main">
-    <MyItem v-for='todo in todoList' :key='todo.id' 
-    :todoObj = 'todo' :checkHandle='checkHandle' :deleteHander='deleteHander'/>
+    <MyItems v-for="val in todoList" :key="val.id"
+    :val="val" :deltodo='deltodo' :checkedth="checkedth"></MyItems>
   </ul>
 </template>
 
 <script>
-import MyItem from "./MyItem";
+import MyItems from "./MyItems";
 export default {
   name: "MyList",
-  components:{
-    MyItem,
+  components: {
+    MyItems,
   },
-  props:['todoList','checkHandle','deleteHander']
+  props:['todoList','deltodo','checkedth']
 };
 </script>
 
 <style scoped>
- /*main*/
-    .todo-main {
-      margin-left: 0px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      padding: 0px;
-    }
+/*main*/
+.todo-main {
+  margin-left: 0px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 0px;
+}
 
-    .todo-empty {
-      height: 40px;
-      line-height: 40px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      padding-left: 5px;
-      margin-top: 10px;
-    }
+.todo-empty {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding-left: 5px;
+  margin-top: 10px;
+}
 </style>

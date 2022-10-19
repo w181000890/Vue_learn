@@ -2,9 +2,9 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader :addList='addList'/>
-        <MyList :todoList='todoList' :checkHandle='checkHandle' :deleteHander='deleteHander'/>
-        <MyFooter :todoList='todoList' :btnAll='btnAll' :clearnAll='clearnAll'/>
+        <MyHeader :addtodo='addtodo'></MyHeader>
+        <MyList :todoList="todoList" :deltodo='deltodo' :checkedth='checkedth'></MyList>
+        <Myfooter :todoList="todoList" :clearSelected="clearSelected" :selectAll="selectAll"></Myfooter>
       </div>
     </div>
   </div>
@@ -12,15 +12,14 @@
 
 <script>
 import MyHeader from "./components/MyHeader";
-import MyFooter from "./components/MyFooter";
 import MyList from "./components/MyList";
-
+import Myfooter from "./components/Myfooter"
 export default {
   name: "App",
   components: {
-    MyHeader,
-    MyFooter,
-    MyList,
+    MyHeader: MyHeader,
+    MyList: MyList,
+    Myfooter:Myfooter
   },
   data() {
     return {
@@ -33,81 +32,89 @@ export default {
   },
   methods:{
     //添加
-    addList(e){
-      // console.log(e.target.value)
-      this.todoList.unshift(e)
+    addtodo(data){
+      this.todoList.unshift(data)
     },
-    // 勾选
-    checkHandle(id){
-      // console.log(id)
-      this.todoList.forEach((val)=>{
-        if(val.id===id){
-          val.todo = !val.todo
+    //选中
+    checkedth(id){
+      this.todoList.forEach(element => {
+        if(element.id===id){
+          return element.todo =!element.todo
         }
-      })
+      });
     },
-    //删除
-    deleteHander(id){
-      console.log(id)
-      this.todoList = this.todoList.filter(val=>val.id !==id)
-    },
-    //全选
-    btnAll(ischeck){
-    //   console.log(ischeck)
-      this.todoList.filter(val=>val.todo=ischeck)
-    },
-    //清除已完成任務
-    clearnAll(){
-      this.todoList = this.todoList.filter((todo)=>{
-        return !todo.todo
-      })
+  //删除
+  deltodo(id){
+    this.todoList = this.todoList.filter((val)=>{
+      return val.id !=id
+    })
+  },
+  clearSelected(){
+    this.todoList = this.todoList.filter((el)=>{
+      return !el.todo
     }
+
+    )
+  },
+  selectAll(flag){
+      this.todoList.forEach(val=>{
+        val.todo = flag
+      })
+  }
+  
   }
 };
 </script>
-<style>
-    /*base*/
-    body {
-      background: #fff;
-    }
 
-    .btn {
-      display: inline-block;
-      padding: 4px 12px;
-      margin-bottom: 0;
-      font-size: 14px;
-      line-height: 20px;
-      text-align: center;
-      vertical-align: middle;
-      cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 1px 2px rgba(0, 0, 0, 0.05);
-      border-radius: 4px;
-    }
+<style >
+/*base*/
+body {
+  background: #fff;
+}
 
-    .btn-danger {
-      color: #fff;
-      background-color: #da4f49;
-      border: 1px solid #bd362f;
-    }
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
 
-    .btn-danger:hover {
-      color: #fff;
-      background-color: #bd362f;
-    }
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
 
-    .btn:focus {
-      outline: none;
-    }
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
 
-    .todo-container {
-      width: 600px;
-      margin: 0 auto;
-    }
-    .todo-container .todo-wrap {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
+.btn:focus {
+  outline: none;
+}
+
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
 </style>
-
