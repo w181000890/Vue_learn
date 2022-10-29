@@ -1,18 +1,18 @@
 <template>
   <ul class="todo-main">
-    <MyItems v-for="val in todoList" :key="val.id"
-    :val="val" :deltodo='deltodo' :checkedth="checkedth"></MyItems>
+    <MyItems v-for="val of todos" :key="val.id" :val='val' :deleteItem='deleteItem'
+    :changeChecked='changeChecked'></MyItems>
   </ul>
 </template>
 
 <script>
-import MyItems from "./MyItems";
+import MyItems from './MyItems'
 export default {
-  name: "MyList",
-  components: {
-    MyItems,
+  name:'MyList',
+  components:{
+    MyItems:MyItems
   },
-  props:['todoList','deltodo','checkedth']
+  props:['todos','changeChecked','deleteItem']
 };
 </script>
 
@@ -33,4 +33,5 @@ export default {
   padding-left: 5px;
   margin-top: 10px;
 }
+
 </style>

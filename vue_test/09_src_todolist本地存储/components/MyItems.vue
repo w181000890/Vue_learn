@@ -1,27 +1,27 @@
 <template>
-  <li>
-    <label>
-      <input type="checkbox" :checked="val.todo" @change="checkTodo(val.id)" />
-      <span>{{ val.title }}</span>
-    </label>
-    <button class="btn btn-danger" @click='btndel(val.id)'>删除</button>
-  </li>
+    <li>
+      <label>
+        <input type="checkbox" :checked='val.todo' @change='checkedChangeInput(val.id)' />
+        <span>{{val.title}}</span>
+      </label>
+      <button class="btn btn-danger" @click='btndelete(val.id)'>删除</button>
+    </li>
 </template>
 
 <script>
 export default {
-  name: "MyItems",
-  props: ["val",'deltodo','checkedth'],
+  name:'MyItems',
+  props:['val','changeChecked','deleteItem'],
   methods:{
-    btndel(id){
-      // console.log(id)
-      this.deltodo(id)
+    checkedChangeInput(id){
+      this.changeChecked(id)
     },
-    //选中
-    checkTodo(id){
-      this.checkedth(id)
+    btndelete(id){
+      // console.log(id)
+        this.deleteItem(id)
     }
-  }
+  },
+  
 };
 </script>
 
@@ -60,7 +60,7 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
-li:hover button {
+li:hover button{
   display: block;
 }
 </style>

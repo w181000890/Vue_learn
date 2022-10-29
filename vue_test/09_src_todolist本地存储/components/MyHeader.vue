@@ -1,25 +1,25 @@
 <template>
-  <div class="todo-header" >
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认" 
-    v-model="title" @keydown.enter='additems'/>
+  <div class="todo-header">
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model='title' @keyup.enter='addtitle'/>
   </div>
 </template>
 
 <script>
-import  {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid'
 export default {
-  name:"MyHeader",
+  name:'MyHeader',
+  props:['addItem'],
   data() {
     return {
       title:''
     }
   },
-  props:["addtodo"],
   methods:{
-    additems(){
-      if(!this.title.trim()) return alert('输入信息不能为空')
-      const ele = {id:nanoid(),title:this.title,todo:false}
-      this.addtodo(ele)
+    addtitle(){
+      if(!this.title.trim()) return alert ("输入不能为空")
+      const item = {id:nanoid(),title:this.title,todo:false}
+      this.addItem(item)
+      // this.$emit('addItem',item)
       this.title=''
     }
   }
