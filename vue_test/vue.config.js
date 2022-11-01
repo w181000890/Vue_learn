@@ -7,6 +7,10 @@ module.exports = defineConfig({
       // page 的入口
       entry: 'src/main.js'
   }
-}
+},
+//开启代理服务器
+  // devServer: {
+  //   proxy: 'http://localhost:5000'
+  // }
 
 })

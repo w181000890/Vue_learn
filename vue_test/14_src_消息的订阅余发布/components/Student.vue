@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+import  pubsub from 'pubsub-js'
 export default {
   name:'Student',
   data() {
@@ -17,7 +18,8 @@ export default {
   },
   methods:{
     demo(){
-      this.$bus.$emit('hello',this.name)
+      // this.$bus.$emit('hello',this.name)
+      pubsub.publish('hello',this.name)
 
     }
   }

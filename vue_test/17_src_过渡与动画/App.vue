@@ -1,29 +1,25 @@
 <template>
   <div id="root">
-    <button @click='requStudent'>获取学生数据</button>
+   <test/>
+   <test2/>
+   <test3/>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import test from './components/test'
+import test2 from './components/Test2'
+import test3 from './components/Test3'
 export default {
   name: "App",
-  methods:{
-    requStudent(){
-      axios({
-        method:'get',
-        url:"http://localhost:8080/students",
-        data:{}
+  components:{
+    test:test,
+    test2,
+  test3
 
-      }).then(
-        function(res){
-          console.log(res.data)
-        }
-      )
-    }
-  }
-  }
-  
+  },
+}
+
 </script>
 
 <style>
