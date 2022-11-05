@@ -26,12 +26,13 @@ export default {
       //   // params:{q:this.keyword}
       // })
       // axios.get(`https://api.github.com/search/users?q=${this.keyWord}`)
-      axios({ 
-     method: 'GET', 
-     url: `https://api.github.com/search/users?qq=${this.keyWord}`, 
+//       axios({ 
+//      method: 'GET', 
+//      url: `https://api.github.com/search/users?qq=${this.keyWord}`, 
      
      
- }).then(res=>{
+//  })
+this.$http.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(res=>{
         // console.log('哈哈哈哈')
         console.log(res.data.items)
         this.$bus.$emit('getuser',{isFirst:false,waitMessage:false,mess:res.data.items})
