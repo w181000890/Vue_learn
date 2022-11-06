@@ -3,7 +3,6 @@
     <h1>当前求和为{{sum}}</h1>
     <h1>当前求和扩大10倍为{{bigSum}}</h1>
     <h2>我在{{school}}学习，学科是{{subject}}</h2>
-    <h3>人数为:{{personList.length}}</h3>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -39,15 +38,14 @@ export default {
     // addWait(){
     //  this.$store.dispatch('jiaWait',this.n)
     // }
-    ...mapMutations('countAbout',{add:'JIA',sub:"JIAN"}),
+    ...mapMutations({add:'JIA',sub:"JIAN"}),
     
-    ...mapActions('countAbout',{addOdd:'jiaOdd',addWait:'jiaWait'})
+    ...mapActions({addOdd:'jiaOdd',addWait:'jiaWait'})
     
   },
   computed:{ 
-    ...mapState('countAbout',{sum:'sum',school:'school',subject:'subject'}),
-    ...mapState('personAbout',{personList:'personList'}),
-    ...mapGetters('countAbout',['bigSum'])
+    ...mapState({sum:'sum',school:'school',subject:'subject'}),
+    ...mapGetters(['bigSum'])
   }
 
 }

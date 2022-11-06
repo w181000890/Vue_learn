@@ -39,15 +39,15 @@ export default {
     // addWait(){
     //  this.$store.dispatch('jiaWait',this.n)
     // }
-    ...mapMutations('countAbout',{add:'JIA',sub:"JIAN"}),
+    ...mapMutations({add:'JIA',sub:"JIAN"}),
     
-    ...mapActions('countAbout',{addOdd:'jiaOdd',addWait:'jiaWait'})
+    ...mapActions({addOdd:'jiaOdd',addWait:'jiaWait'})
     
   },
   computed:{ 
-    ...mapState('countAbout',{sum:'sum',school:'school',subject:'subject'}),
-    ...mapState('personAbout',{personList:'personList'}),
-    ...mapGetters('countAbout',['bigSum'])
+    ...mapState({sum:'sum',school:'school',subject:'subject'}),
+    ...mapState({personList:'personList'}),
+    ...mapGetters(['bigSum'])
   }
 
 }
